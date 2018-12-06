@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Jars1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/production/Airline Reservation and Airplane tracker System/main/resources/Jars/jfoenix-8.0.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/production/Airline Reservation and Airplane tracker System/main/resources/Jars/mysql-connector-java-5.1.36-bin.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

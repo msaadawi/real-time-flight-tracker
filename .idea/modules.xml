@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Realtime-Airplanes-And-Flights-Tracker.iml" filepath="$PROJECT_DIR$/Realtime-Airplanes-And-Flights-Tracker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Realtime-Flights-Tracker.iml" filepath="$PROJECT_DIR$/Realtime-Flights-Tracker.iml" />
     </modules>
   </component>
 </project>
