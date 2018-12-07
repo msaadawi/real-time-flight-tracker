@@ -1,1 +1,1 @@
-This project is a JavaFX desktop application to track and visualize flights and airplanes in realtime.
+This project is a JavaFX desktop application to track and visualize an airline company flights in realtime.
