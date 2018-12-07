@@ -297,17 +297,6 @@ public class DButil
             ps.setString(6,airplaneToEdit.getAirplaneNumber());
 
             ps.execute();
-
-            /*
-            ps.setString(1,newAirplane.getAirplaneNumber());
-            ps.setString(2,newAirplane.getType());
-            ps.setDouble(3,newAirplane.getSize());
-            ps.setInt(4,newAirplane.getCapacity());
-            ps.setString(5,new SimpleDateFormat("yyyy-MM-dd").format(newAirplane.getDateOfPurchase()));
-            ps.setString(6,airplaneToEdit.getAirplaneNumber());
-            ps.execute();
-            */
-
         }
         catch (SQLException e)
         {
@@ -529,23 +518,4 @@ public class DButil
         return flights;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
