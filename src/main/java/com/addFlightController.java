@@ -175,7 +175,11 @@ public class addFlightController implements Initializable
                                             , Double.parseDouble(Main.getAirportsList().get(flight1.getDepartureLocation()).split(",")[1])
                                             , Double.parseDouble(Main.getAirportsList().get(flight1.getDestination()).split(",")[0])
                                             , Double.parseDouble(Main.getAirportsList().get(flight1.getDestination()).split(",")[1])
-                                            , 1000 * elapsedTime(new Date(), flight1.getArrDate()));
+                                            , 1000 * elapsedTime(new Date(), flight1.getArrDate())
+                                            , flight1.getDepartureLocation()
+                                            , flight1.getDestination()
+                                            , new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(flight1.getDepDate())
+                                            , new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(flight1.getArrDate()));
                             }
                         });
 
