@@ -198,7 +198,11 @@ public class addFlightController implements Initializable
                                 , Double.parseDouble(Main.getAirportsList().get(flight.getDepartureLocation()).split(",")[1])
                                 , Double.parseDouble(Main.getAirportsList().get(flight.getDestination()).split(",")[0])
                                 , Double.parseDouble(Main.getAirportsList().get(flight.getDestination()).split(",")[1])
-                                , 1000 * elapsedTime(new Date() , flight.getArrDate()));
+                                , 1000 * elapsedTime(new Date() , flight.getArrDate())
+                                , flight.getDepartureLocation()
+                                , flight.getDestination()
+                                , new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(flight.getDepDate())
+                                , new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(flight.getArrDate()));
                     }
                 }
                 else
@@ -277,7 +281,11 @@ public class addFlightController implements Initializable
                                     , Double.parseDouble(Main.getAirportsList().get(flight.getDepartureLocation()).split(",")[1])
                                     , Double.parseDouble(Main.getAirportsList().get(flight.getDestination()).split(",")[0])
                                     , Double.parseDouble(Main.getAirportsList().get(flight.getDestination()).split(",")[1])
-                                    , 1000 * elapsedTime(new Date(), flight.getArrDate()));
+                                    , 1000 * elapsedTime(new Date(), flight.getArrDate())
+                                    , flight.getDepartureLocation()
+                                    , flight.getDestination()
+                                    , new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(flight.getDepDate())
+                                    , new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(flight.getArrDate()));
                     }
                 });
 
