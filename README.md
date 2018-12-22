@@ -7,7 +7,7 @@ This project is a JavaFX desktop application to manage, track and visualize an a
 - Visualize flights in Google Maps in realtime.
 <h3>Usage:</h3>
 1. Download the project or clone it.<br/>
-2. Open Root folder in your favoite Java IDE (make sure you have javaFx setup in your IDE).<br/>
+2. Open Root folder in your favorite Java IDE (make sure you have JavaFx setup in your IDE).<br/>
 3. Add needed librairies (can be found in lib folder) to your classpath.<br/>
 4. Execute the 'Realtime-Flights-Tracker.sql' sql file.<br/>
 5. Open the 'application' package and compile/run Main.java class.
