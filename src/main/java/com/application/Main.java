@@ -13,6 +13,7 @@ import main.java.com.controllers.addFlightController;
 import main.java.com.database.DButil;
 
 import java.sql.Connection;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -65,13 +66,16 @@ public class Main extends Application {
                         {
                             if (addFlightController.elapsedTime(flight.getDepDate(), new Date()) == 0)
                             {
-                                System.out.println("a flight is ready");
-                                addFlightController.getWindow().call("add_flight",
+                                addFlightController.getWindow().call("addFlight",
                                         Double.parseDouble(Main.getAirportsList().get(flight.getDepartureLocation()).split(",")[0])
                                         , Double.parseDouble(Main.getAirportsList().get(flight.getDepartureLocation()).split(",")[1])
                                         , Double.parseDouble(Main.getAirportsList().get(flight.getDestination()).split(",")[0])
                                         , Double.parseDouble(Main.getAirportsList().get(flight.getDestination()).split(",")[1])
-                                        , 1000 * addFlightController.elapsedTime(new Date(), flight.getArrDate()));
+                                        , 1000 * addFlightController.elapsedTime(new Date(), flight.getArrDate())
+                                        , flight.getDepartureLocation()
+                                        , flight.getDestination()
+                                        , new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(flight.getDepDate())
+                                        , new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(flight.getArrDate()));
 
                                 futureFlights.remove(flight);
                             }

@@ -212,12 +212,14 @@ public class addFlightController implements Initializable
                     Main.getFutureFlights().add(flight);
                     if (SeeFlightsController.getListItems() != null)
                     {
+                        flight = DBu.getFlightById(flight.getFlightNumber());
+                        Flight finalFlight = flight;
                         flight.getCancelButton().setOnAction(event1 ->
                         {
-                            DBu.deleteFlight(flight);
-                            SeeFlightsController.getListItems().remove(flight);
+                            DBu.deleteFlight(finalFlight);
+                            SeeFlightsController.getListItems().remove(finalFlight);
                         });
-                        SeeFlightsController.getListItems().add(DBu.getFlightById(flight.getFlightNumber()));
+                        SeeFlightsController.getListItems().add(flight);
                     }
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, "Flight added successfully to database. it will begin when ready!", ButtonType.OK);
                     alert.showAndWait();
