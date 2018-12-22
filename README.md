@@ -5,7 +5,6 @@ This project is a JavaFX desktop application to manage, track and visualize an a
 - Manage Airplanes.<br/>
 - See which airplanes are actives and which are not.<br/>
 - Manage Flights.<br/>
-- Add Flights to airplanes.<br/>
 - Visualize flights in Google Maps in realtime.
 <h3>Usage:</h3>
 1. Download the project or clone it.<br/>
