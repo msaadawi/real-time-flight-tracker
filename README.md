@@ -1,5 +1,5 @@
 <h1>Realtime Flights Tracker</h1>
-<h4>Description:</h4>
+##Description:
 This project is a JavaFX desktop application to manage, track and visualize an airline company flights in realtime using Google Maps API.
 <h4>Features:</h4>
 - Manage Airplanes.<br/>
