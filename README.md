@@ -10,6 +10,6 @@ This project is a desktop application to manage, track and visualize an airline 
 <h3>Usage:</h3>
 1. Download the project or clone it.<br/>
 2. Open Root folder in your favorite Java IDE (make sure you have JavaFX setup in your IDE).<br/>
-3. Add needed libraries (can be found in lib folder) to your classpath.<br/>
+3. Add needed libraries (can be found in 'lib' folder) to your classpath.<br/>
 4. Execute the 'Realtime-Flights-Tracker.sql' sql file.<br/>
 5. Open the 'application' package and compile/run the 'Main.java' class.
