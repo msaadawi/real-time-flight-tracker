@@ -1,6 +1,6 @@
 <h1>Realtime Flights Tracker</h1>
 <h3>Description:</h3>
-This project is a desktop application to manage, track and visualize an airline company flights in realtime, created using JavaFx, Java, HTML, JavaScript, MySQL and Google Maps API.
+This project is a desktop application to manage, track and visualize an airline company flights in realtime, created using JavaFX, Java, HTML, JavaScript, MySQL and Google Maps API.
 <h3>Features:</h3>
 - Manage airplanes.<br/>
 - See which airplanes are actives and which are not, in realtime.<br/>
