@@ -1,5 +1,5 @@
-CREATE DATABASE  IF NOT EXISTS `AirplaneMonitor` ;
-USE `AirplaneMonitor`;
+CREATE DATABASE  IF NOT EXISTS `rft` ;
+USE `rft`;
 
 
 DROP TABLE IF EXISTS `airplane`;

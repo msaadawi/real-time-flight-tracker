@@ -33,7 +33,7 @@ public class DButil
     public static Connection getConnection()
     {
         Connection conn =null;
-        String URL = "jdbc:mysql://localhost/AirplaneMonitor";
+        String URL = "jdbc:mysql://localhost/rft";
         try
         {
             conn = DriverManager.getConnection(URL,"root","dnylm404");
