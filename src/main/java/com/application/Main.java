@@ -1,16 +1,21 @@
 package main.java.com.application;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import main.java.com.*;
+import javafx.util.Duration;
+import main.java.com.Flight;
+import main.java.com.controllers.AddFlightController;
 import main.java.com.controllers.AirplanesListController;
 import main.java.com.controllers.SeeFlightsController;
-import main.java.com.controllers.addFlightController;
 import main.java.com.database.DButil;
+import netscape.javascript.JSObject;
 
 import java.sql.Connection;
 import java.text.SimpleDateFormat;
@@ -42,12 +47,10 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
 
-
         Task<Void> task = new Task<Void>()
         {
             @Override
-            protected Void call() throws Exception
-            {
+            public Void call() {
                 while (true)
                 {
                     try
@@ -62,30 +65,12 @@ public class Main extends Application {
                                 AirplanesListController.setItemsCheckBoxesEvents();
                             }
                         }
-                        for (Flight flight : futureFlights)
-                        {
-                            if (addFlightController.elapsedTime(flight.getDepDate(), new Date()) == 0)
-                            {
-                                addFlightController.getWindow().call("addFlight",
-                                        Double.parseDouble(Main.getAirportsList().get(flight.getDepartureLocation()).split(",")[0])
-                                        , Double.parseDouble(Main.getAirportsList().get(flight.getDepartureLocation()).split(",")[1])
-                                        , Double.parseDouble(Main.getAirportsList().get(flight.getDestination()).split(",")[0])
-                                        , Double.parseDouble(Main.getAirportsList().get(flight.getDestination()).split(",")[1])
-                                        , 1000 * addFlightController.elapsedTime(new Date(), flight.getArrDate())
-                                        , flight.getDepartureLocation()
-                                        , flight.getDestination()
-                                        , new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(flight.getDepDate())
-                                        , new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(flight.getArrDate()));
-
-                                futureFlights.remove(flight);
-                            }
-                        }
 
                         if (AirplanesListController.getFlightsStage() != null)
                         {
                             for (int i = 0; i < SeeFlightsController.getListItems().size(); i++)
                             {
-                                if (addFlightController.elapsedTime(SeeFlightsController.getListItems().get(i).getDepDate(), new Date()) > 0 && SeeFlightsController.getListItems().get(i).getCancelButton() != null)
+                                if (AddFlightController.elapsedTime(SeeFlightsController.getListItems().get(i).getDepDate(), new Date()) > 0 && SeeFlightsController.getListItems().get(i).getCancelButton() != null)
                                 {
                                     Flight flight = SeeFlightsController.getListItems().get(i);
                                     flight.setCancelButton(null);
@@ -94,9 +79,9 @@ public class Main extends Application {
                             }
                         }
                     }
-                    catch(Exception e)
+                    catch (Exception e)
                     {
-                        continue;
+                        e.printStackTrace();
                     }
                 }
             }
@@ -104,6 +89,37 @@ public class Main extends Application {
 
         Thread thread = new Thread(task);
         thread.start();
+
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), actionEvent ->
+        {
+            if (AddFlightController.getStage() != null)
+            {
+                for (int i = 0; i < futureFlights.size(); i++)
+                {
+                    Flight flight = futureFlights.get(i);
+                    if (AddFlightController.elapsedTime(flight.getDepDate(), new Date()) == 0)
+                    {
+                        futureFlights.remove(i);
+
+                        JSObject window = (JSObject) AddFlightController.getWebEngine().executeScript("window");
+
+                        window.call("addFlight",
+                                Double.parseDouble(Main.getAirportsList().get(flight.getDepartureLocation()).split(",")[0])
+                                , Double.parseDouble(Main.getAirportsList().get(flight.getDepartureLocation()).split(",")[1])
+                                , Double.parseDouble(Main.getAirportsList().get(flight.getDestination()).split(",")[0])
+                                , Double.parseDouble(Main.getAirportsList().get(flight.getDestination()).split(",")[1])
+                                , 1000 * AddFlightController.elapsedTime(new Date(), flight.getArrDate())
+                                , flight.getDepartureLocation()
+                                , flight.getDestination()
+                                , new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(flight.getDepDate())
+                                , new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(flight.getArrDate()));
+                    }
+                }
+            }
+        }));
+
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
     }
 
 
@@ -120,23 +136,12 @@ public class Main extends Application {
         return root;
     }
 
-    public static void setRoot(Parent root) {
-        Main.root = root;
-    }
-
     public static Map<String, String> getAirportsList() {
         return AirportsList;
-    }
-
-    public static void setAirportsList(Map<String, String> airportsList) {
-        AirportsList = airportsList;
     }
 
     public static ArrayList<Flight> getFutureFlights() {
         return futureFlights;
     }
 
-    public static void setFutureFlights(ArrayList<Flight> futureFlights) {
-        Main.futureFlights = futureFlights;
-    }
 }

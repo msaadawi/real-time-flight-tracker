@@ -425,11 +425,11 @@ public class DButil
             while (rs.next())
             {
                 flight = new Flight(rs.getString("flight_number"),
-                    rs.getString("departure_location"),
-                    rs.getString("destination"),
-                    rs.getTimestamp("dep_date"),
-                    rs.getTimestamp("arr_date"),
-                    rs.getString("airplane_number"));
+                        rs.getString("departure_location"),
+                        rs.getString("destination"),
+                        rs.getTimestamp("dep_date"),
+                        rs.getTimestamp("arr_date"),
+                        rs.getString("airplane_number"));
             }
         }
         catch (SQLException e)
@@ -517,6 +517,50 @@ public class DButil
             }
         }
         return flights;
+    }
+
+    public Flight getAirplaneCurrentFlight(String airplaneNumber)
+    {
+        Connection conn ;
+        PreparedStatement ps = null;
+        ResultSet rs= null;
+        Flight flight = null;
+
+
+        conn = DButil.getConnection();
+        String sql = "select * from flight where airplane_number = ? and dep_date <= current_timestamp() and arr_date >= current_timestamp()";
+
+        try
+        {
+            ps = conn.prepareStatement(sql);
+            ps.setString(1 , airplaneNumber);
+            rs = ps.executeQuery();
+            while (rs.next())
+            {
+                flight = new Flight(rs.getString("flight_number"),
+                        rs.getString("departure_location"),
+                        rs.getString("destination"),
+                        rs.getTimestamp("dep_date"),
+                        rs.getTimestamp("arr_date"),
+                        rs.getString("airplane_number"));
+            }
+
+        }
+        catch (SQLException e){e.printStackTrace();}
+
+        finally
+        {
+            try
+            {
+                conn.close();conn= null;ps.close();ps=null;rs.close();rs=null;
+            }
+            catch (SQLException e)
+            {
+                e.printStackTrace();
+            }
+        }
+
+        return flight;
     }
 }
 

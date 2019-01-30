@@ -119,15 +119,15 @@ public class SeeFlightsController implements Initializable
                 return true;
 
             if (status.getValue().equals("Terminated")) {
-                if (addFlightController.elapsedTime(flight.getArrDate(), new Date()) > 0)
+                if (AddFlightController.elapsedTime(flight.getArrDate(), new Date()) > 0)
                     return true;
             }
             if (status.getValue().equals("Current")) {
-                if (addFlightController.elapsedTime(flight.getDepDate(), new Date()) > 0 && addFlightController.elapsedTime(new Date(), flight.getArrDate()) > 0)
+                if (AddFlightController.elapsedTime(flight.getDepDate(), new Date()) > 0 && AddFlightController.elapsedTime(new Date(), flight.getArrDate()) > 0)
                     return true;
             }
             if (status.getValue().equals("Future")) {
-                if (addFlightController.elapsedTime(new Date(), flight.getDepDate()) > 0)
+                if (AddFlightController.elapsedTime(new Date(), flight.getDepDate()) > 0)
                     return true;
             }
             return false;
@@ -209,7 +209,7 @@ public class SeeFlightsController implements Initializable
         //set Cancel buttons events
         for (Flight flight : listItems)
         {
-            if (addFlightController.elapsedTime(new Date(),flight.getDepDate()) > 0)
+            if (AddFlightController.elapsedTime(new Date(),flight.getDepDate()) > 0)
             {
                 flight.getCancelButton().setOnAction(event ->
                 {

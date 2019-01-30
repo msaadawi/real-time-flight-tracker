@@ -225,7 +225,7 @@ public class AirplanesListController implements Initializable
             {
                 try
                 {
-                    addFlightController.setAirplaneNumber(airplane.getAirplaneNumber());
+                    AddFlightController.setAirplaneNumber(airplane.getAirplaneNumber());
                     Parent root = FXMLLoader.load(AirplanesListController.class.getResource("/fxml/addFlight.fxml"));
                     Scene scene = new Scene(root);
                     Stage stage = new Stage();
@@ -291,7 +291,7 @@ public class AirplanesListController implements Initializable
     }
 
     public void openGoogleMap(ActionEvent event) {
-        addFlightController.loadMap();
+        AddFlightController.loadMap();
     }
 
     public void editAirplane(ActionEvent event)
