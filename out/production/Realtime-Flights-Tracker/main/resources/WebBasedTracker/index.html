@@ -22,7 +22,7 @@
             var mapCanvas = document.getElementById("mapCanvas");
             var map = new google.maps.Map(mapCanvas, mapOptions);
 
-            function addFlight(lat1,lng1,lat2,lng2,duration,depLoc,dest,depDateTime,arrDateTime)
+            function addFlight(lat1,lng1,lat2,lng2,duration,depLoc,dest,depDateTime,arrDateTime,airplaneNumber)
             {
                 var deg = google.maps.geometry.spherical.computeHeading(new google.maps.LatLng(lat1,lng1),new google.maps.LatLng(lat2,lng2));
                 //var image = {url :'http://maps.google.com/mapfiles/kml/shapes/airports.png',scaledSize :new google.maps.Size(35, 35)};
@@ -40,10 +40,11 @@
                     marker.setVisible(false);
                 }, duration);
 
-                var infoWindowText = "<b>from:</b>"+depLoc+"<br/>"
-                                    +"<b>to:</b>"+dest+"<br/>"
-                                    +"<b>departed at:</b>"+depDateTime+"<br/>"
-                                    +"<b>arrive at:</b>"+arrDateTime;
+                var infoWindowText = "<b>Airplane: </b> "+ airplaneNumber+"<br/>"
+                                     +"<b>from: </b>"+depLoc+"<br/>"
+                                     +"<b>to: </b>"+dest+"<br/>"
+                                     +"<b>departed at: </b>"+depDateTime+"<br/>"
+                                     +"<b>arrive at: </b>"+arrDateTime;
                 var infoWindow = new google.maps.InfoWindow({
                     content: infoWindowText
                 });

@@ -176,7 +176,8 @@ public class AddFlightController implements Initializable
                                                 , flight1.getDepartureLocation()
                                                 , flight1.getDestination()
                                                 , new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(flight1.getDepDate())
-                                                , new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(flight1.getArrDate()));
+                                                , new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(flight1.getArrDate())
+                                                , flight1.getAirplaneNumber());
                                 }
                             }
                         });
@@ -203,7 +204,8 @@ public class AddFlightController implements Initializable
                                 , flight.getDepartureLocation()
                                 , flight.getDestination()
                                 , new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(flight.getDepDate())
-                                , new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(flight.getArrDate()));
+                                , new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(flight.getArrDate())
+                                , flight.getAirplaneNumber());
                     }
                 }
                 else
@@ -288,7 +290,8 @@ public class AddFlightController implements Initializable
                                         , flight.getDepartureLocation()
                                         , flight.getDestination()
                                         , new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(flight.getDepDate())
-                                        , new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(flight.getArrDate()));
+                                        , new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(flight.getArrDate())
+                                        ,flight.getAirplaneNumber());
                         }
                     }
                 });

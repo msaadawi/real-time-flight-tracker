@@ -87,9 +87,6 @@ public class Main extends Application {
             }
         };
 
-        Thread thread = new Thread(task);
-        thread.start();
-
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), actionEvent ->
         {
             if (AddFlightController.getStage() != null)
@@ -112,12 +109,15 @@ public class Main extends Application {
                                 , flight.getDepartureLocation()
                                 , flight.getDestination()
                                 , new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(flight.getDepDate())
-                                , new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(flight.getArrDate()));
+                                , new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(flight.getArrDate())
+                                ,flight.getAirplaneNumber());
                     }
                 }
             }
         }));
 
+        Thread thread = new Thread(task);
+        thread.start();
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
     }
