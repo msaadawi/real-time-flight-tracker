@@ -18,7 +18,7 @@ public class DButil
     private DButil()
     {}
 
-    public static DButil getCurrentInstance()
+    public static synchronized DButil getCurrentInstance()
     {
         if (instance == null)
         {

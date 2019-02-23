@@ -33,9 +33,7 @@ public class Main extends Application {
 
     private Connection conn = DButil.getConnection();
 
-    private static DButil DBu = DButil.getCurrentInstance();
-
-    private static ArrayList<Flight> futureFlights = DBu.getFutureFlights();
+    private static ArrayList<Flight> futureFlights;
 
     @Override
     public void start(Stage primaryStage) throws Exception
@@ -50,7 +48,10 @@ public class Main extends Application {
         Task<Void> task = new Task<Void>()
         {
             @Override
-            public Void call() {
+            public Void call()
+            {
+                DButil DBu = DButil.getCurrentInstance();
+
                 while (true)
                 {
                     try
@@ -125,6 +126,11 @@ public class Main extends Application {
 
     public static void main(String[] args)
     {
+
+        DButil DBu = DButil.getCurrentInstance();
+
+        futureFlights = DBu.getFutureFlights();
+
         AirportsList.put("Berlin Airport","52.52437,13.41053");AirportsList.put("London Airport","51.50853,-0.12574");
         AirportsList.put("Hamburg Airport","53.57532,10.01534");AirportsList.put("Paris Airport","48.85341,2.3488");
         AirportsList.put("Brussels Airport","50.85045,4.34878");AirportsList.put("Copenhagen Airport","55.67594,12.56553");
