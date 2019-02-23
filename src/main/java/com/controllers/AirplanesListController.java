@@ -22,6 +22,7 @@ import main.java.com.Airplane;
 import main.java.com.Flight;
 import main.java.com.application.Main;
 import main.java.com.database.DButil;
+import netscape.javascript.JSObject;
 
 import java.io.IOException;
 import java.net.URL;
@@ -336,6 +337,13 @@ public class AirplanesListController implements Initializable
             {
                 airplanes.add(airplane);
                 DBu.deleteAirplane(airplane);
+
+                if (AddFlightController.getStage()!=null)
+                {
+                    JSObject window = (JSObject) AddFlightController.getWebEngine().executeScript("window");
+
+                    window.call("deleteAirplaneFlights", airplane.getAirplaneNumber());
+                }
             }
         }
         listItems.removeAll(airplanes);
@@ -352,9 +360,8 @@ public class AirplanesListController implements Initializable
                         flights.add(flight);
                 }
             }
+            SeeFlightsController.getListItems().removeAll(flights);
         }
-
-        SeeFlightsController.getListItems().removeAll(flights);
     }
 
     public void seeFlights(ActionEvent event)
