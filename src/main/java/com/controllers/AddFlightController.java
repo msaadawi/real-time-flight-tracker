@@ -72,9 +72,6 @@ public class AddFlightController implements Initializable
     @FXML
     private JFXTimePicker flightArrivalTime;
 
-    public AddFlightController() throws IOException
-    {}
-
     @Override
     public void initialize(URL location, ResourceBundle resources){}
 

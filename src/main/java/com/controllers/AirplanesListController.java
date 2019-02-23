@@ -19,6 +19,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import main.java.com.Airplane;
+import main.java.com.Flight;
 import main.java.com.application.Main;
 import main.java.com.database.DButil;
 
@@ -29,6 +30,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
+
+@SuppressWarnings("Duplicates")
 
 public class AirplanesListController implements Initializable
 {
@@ -323,20 +326,35 @@ public class AirplanesListController implements Initializable
 
     public void deleteAirplane(ActionEvent event)
     {
-        ArrayList<Airplane> list = new ArrayList<>();
+        ArrayList<Airplane> airplanes = new ArrayList<>();
+        ArrayList<Flight> flights = new ArrayList<>();
         DButil DBu = DButil.getCurrentInstance();
 
         for (Airplane airplane : listItems)
         {
             if (airplane.getCheckBox().isSelected())
             {
+                airplanes.add(airplane);
                 DBu.deleteAirplane(airplane);
-                list.add(airplane);
             }
         }
-        listItems.removeAll(list);
+        listItems.removeAll(airplanes);
         EditAirplaneButton.setDisable(true);
         DeleteAirplaneButton.setDisable(true);
+
+        if (flightsStage != null)
+        {
+            for (Airplane airplane : airplanes)
+            {
+                for (Flight flight : SeeFlightsController.getListItems())
+                {
+                    if(flight.getAirplaneNumber().equals(airplane.getAirplaneNumber()))
+                        flights.add(flight);
+                }
+            }
+        }
+
+        SeeFlightsController.getListItems().removeAll(flights);
     }
 
     public void seeFlights(ActionEvent event)

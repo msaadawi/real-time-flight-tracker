@@ -18,6 +18,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.java.com.Flight;
+import main.java.com.application.Main;
 import main.java.com.database.DButil;
 
 import java.net.URL;
@@ -69,7 +70,8 @@ public class SeeFlightsController implements Initializable
     private static ObservableList<Flight> listItems;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources)
+    {
         flightNumberCol.setCellValueFactory(new PropertyValueFactory<>("flightNumber"));
         airplaneNumberCol.setCellValueFactory(new PropertyValueFactory<>("airplaneNumber"));
         departureLocationCol.setCellValueFactory(new PropertyValueFactory<>("departureLocation"));
@@ -214,6 +216,7 @@ public class SeeFlightsController implements Initializable
                 flight.getCancelButton().setOnAction(event ->
                 {
                     DBu.deleteFlight(flight);
+                    Main.setFutureFlights(DBu.getFutureFlights());
                     SeeFlightsController.getListItems().remove(flight);
                 });
             }

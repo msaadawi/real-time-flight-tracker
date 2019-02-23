@@ -8,6 +8,7 @@ import main.java.com.Flight;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 @SuppressWarnings("Duplicates")
 
@@ -561,6 +562,47 @@ public class DButil
         }
 
         return flight;
+    }
+
+    public List<Flight> getAirplaneFlights(Airplane airplane)
+    {
+        Connection conn ;
+        PreparedStatement ps = null;
+        ResultSet rs= null;
+        ArrayList<Flight> flights = new ArrayList<>();
+        conn = DButil.getConnection();
+        String sql = "select * from flight where airplane_number = ? ";
+        try
+        {
+            ps = conn.prepareStatement(sql);
+            ps.setString(1,airplane.getAirplaneNumber());
+            rs = ps.executeQuery();
+            while (rs.next())
+            {
+                Flight f = new Flight(rs.getString("flight_number"),
+                        rs.getString("departure_location"),
+                        rs.getString("destination"),
+                        rs.getTimestamp("dep_date"),
+                        rs.getTimestamp("arr_date"),
+                        rs.getString("airplane_number"));
+                flights.add(f);
+            }
+
+        }
+        catch (SQLException e){e.printStackTrace();}
+
+        finally
+        {
+            try
+            {
+                conn.close();conn= null;ps.close();ps=null;rs.close();rs=null;
+            }
+            catch (SQLException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        return flights;
     }
 }
 

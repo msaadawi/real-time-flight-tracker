@@ -57,6 +57,7 @@ public class Main extends Application {
                     try
                     {
                         DBu.cleanFlights1(conn);
+
                         for (int i = 0; i < AirplanesListController.getListItems().size(); i++)
                         {
                             if (!AirplanesListController.getListItems().get(i).getStatus().equals(DBu.getAirplaneById(AirplanesListController.getListItems().get(i).getAirplaneNumber()).getStatus()))
@@ -150,4 +151,7 @@ public class Main extends Application {
         return futureFlights;
     }
 
+    public static void setFutureFlights(ArrayList<Flight> futureFlights) {
+        Main.futureFlights = futureFlights;
+    }
 }
