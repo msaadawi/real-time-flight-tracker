@@ -8,7 +8,7 @@ This project is a desktop application to manage, track and visualize an airline 
 - See terminated, current and future flights in realtime.<br/>
 - Visualize flights in Google Maps in realtime.
 <h3>Usage:</h3>
-<b>note:</b> Google maps wil only work when using Java 11+
+<b>note:</b> Google Maps only works when using Java 11+<br/>
 1. Download the project or clone it.<br/>
 2. Open Root folder in your favorite Java IDE.<br/>
 3. Add needed libraries (can be found in 'lib' folder) to your classpath.<br/>
@@ -16,7 +16,8 @@ This project is a desktop application to manage, track and visualize an airline 
 5. modify the file 'DButil.java' by changing the database connection credentials with the ones you gave to the user created in the previous step.<br/>
 6. Execute the 'Realtime-Flights-Tracker.sql' sql file.<br/>
 7. Download openjfx<br/>
-8.Add these configurations to your VM options : --module-path
+8.Add these configurations to your VM options :<br/>
+--module-path
 path_to_openjfx/javafx-sdk-11.0.2/lib
 --add-modules=javafx.controls,javafx.fxml,com.jfoenix
 --add-exports
