@@ -8,7 +8,7 @@ This project is a desktop application to manage, track and visualize an airline 
 - See terminated, current and future flights in realtime.<br/>
 - Visualize flights in Google Maps in realtime.
 <h3>Usage:</h3>
-<b>note:</b> Google Maps only works when using Java 11+<br/>
+<b>note:</b> Google Maps only works when using Java 11+<br/><br/>
 1. Download the project or clone it.<br/>
 2. Open Root folder in your favorite Java IDE.<br/>
 3. Add needed libraries (can be found in 'lib' folder) to your classpath.<br/>
