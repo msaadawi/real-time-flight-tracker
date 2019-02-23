@@ -9,7 +9,7 @@ This project is a desktop application to manage, track and visualize an airline 
 - Visualize flights in Google Maps in realtime.
 <h3>Usage:</h3>
 1. Download the project or clone it.<br/>
-2. Open Root folder in your favorite Java IDE (make sure you have JavaFX setup in your IDE).<br/>
+2. Open Root folder in your favorite Java IDE.<br/>
 3. Add needed libraries (can be found in 'lib' folder) to your classpath.<br/>
 4. Setup a database user and grant him access to the database named 'rft'.<br/>
 5. modify the file 'DButil.java' by changing the database connection credentials with the ones you gave to the user created in the previous step.<br/>
