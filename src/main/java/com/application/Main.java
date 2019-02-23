@@ -33,8 +33,6 @@ public class Main extends Application {
 
     private Connection conn = DButil.getConnection();
 
-    private static ArrayList<Flight> futureFlights;
-
     @Override
     public void start(Stage primaryStage) throws Exception
     {
@@ -89,49 +87,13 @@ public class Main extends Application {
             }
         };
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), actionEvent ->
-        {
-            if (AddFlightController.getStage() != null)
-            {
-                for (int i = 0; i < futureFlights.size(); i++)
-                {
-                    Flight flight = futureFlights.get(i);
-                    if (AddFlightController.elapsedTime(flight.getDepDate(), new Date()) == 0)
-                    {
-                        futureFlights.remove(i);
-
-                        JSObject window = (JSObject) AddFlightController.getWebEngine().executeScript("window");
-
-                        window.call("addFlight",
-                                Double.parseDouble(Main.getAirportsList().get(flight.getDepartureLocation()).split(",")[0])
-                                , Double.parseDouble(Main.getAirportsList().get(flight.getDepartureLocation()).split(",")[1])
-                                , Double.parseDouble(Main.getAirportsList().get(flight.getDestination()).split(",")[0])
-                                , Double.parseDouble(Main.getAirportsList().get(flight.getDestination()).split(",")[1])
-                                , 1000 * AddFlightController.elapsedTime(new Date(), flight.getArrDate())
-                                , flight.getDepartureLocation()
-                                , flight.getDestination()
-                                , new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(flight.getDepDate())
-                                , new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(flight.getArrDate())
-                                ,flight.getAirplaneNumber());
-                    }
-                }
-            }
-        }));
-
         Thread thread = new Thread(task);
         thread.start();
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
     }
 
 
     public static void main(String[] args)
     {
-
-        DButil DBu = DButil.getCurrentInstance();
-
-        futureFlights = DBu.getFutureFlights();
-
         AirportsList.put("Berlin Airport","52.52437,13.41053");AirportsList.put("London Airport","51.50853,-0.12574");
         AirportsList.put("Hamburg Airport","53.57532,10.01534");AirportsList.put("Paris Airport","48.85341,2.3488");
         AirportsList.put("Brussels Airport","50.85045,4.34878");AirportsList.put("Copenhagen Airport","55.67594,12.56553");
@@ -147,11 +109,4 @@ public class Main extends Application {
         return AirportsList;
     }
 
-    public static ArrayList<Flight> getFutureFlights() {
-        return futureFlights;
-    }
-
-    public static void setFutureFlights(ArrayList<Flight> futureFlights) {
-        Main.futureFlights = futureFlights;
-    }
 }

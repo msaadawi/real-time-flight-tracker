@@ -4,6 +4,9 @@ package main.java.com.controllers;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
@@ -20,6 +23,7 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import javafx.util.Duration;
 import main.java.com.Airplane;
 import main.java.com.Flight;
 import main.java.com.application.Main;
@@ -208,7 +212,33 @@ public class AddFlightController implements Initializable
                 else
                 {
                     DBu.addFlight(flight);
-                    Main.getFutureFlights().add(flight);
+
+                    Flight finalFlight1 = flight;
+                    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(elapsedTime(new Date(), flight.getDepDate())), actionEvent ->
+                    {
+                        if (stage != null)
+                        {
+
+                            JSObject window = (JSObject)webEngine.executeScript("window");
+
+                            window.call("addFlight",
+                                    Double.parseDouble(Main.getAirportsList().get(finalFlight1.getDepartureLocation()).split(",")[0])
+                                    , Double.parseDouble(Main.getAirportsList().get(finalFlight1.getDepartureLocation()).split(",")[1])
+                                    , Double.parseDouble(Main.getAirportsList().get(finalFlight1.getDestination()).split(",")[0])
+                                    , Double.parseDouble(Main.getAirportsList().get(finalFlight1.getDestination()).split(",")[1])
+                                    , 1000 * AddFlightController.elapsedTime(new Date(), finalFlight1.getArrDate())
+                                    , finalFlight1.getDepartureLocation()
+                                    , finalFlight1.getDestination()
+                                    , new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(finalFlight1.getDepDate())
+                                    , new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(finalFlight1.getArrDate())
+                                    , finalFlight1.getAirplaneNumber());
+                        }
+
+
+                    }));
+
+                    timeline.play();
+
                     if (SeeFlightsController.getListItems() != null)
                     {
                         flight = DBu.getFlightById(flight.getFlightNumber());
@@ -327,8 +357,8 @@ public class AddFlightController implements Initializable
 
     public Boolean checkAirplaneAvailability(String airplaneNumber, Flight flight) {
         DButil DBu = DButil.getCurrentInstance();
-        List<Flight> airplaneFutureFlights = new ArrayList<>();
         Flight currentFlight = DBu.getAirplaneCurrentFlight(airplaneNumber);
+
         if (currentFlight != null)
         {
             if (elapsedTime(currentFlight.getDepDate(), flight.getDepDate()) == 0 || elapsedTime(currentFlight.getArrDate(), flight.getDepDate()) == 0 || elapsedTime(currentFlight.getDepDate(), flight.getArrDate()) == 0 || elapsedTime(currentFlight.getArrDate(), flight.getArrDate()) == 0)
@@ -341,26 +371,18 @@ public class AddFlightController implements Initializable
                 return false;
         }
 
-        for (Flight flight1 : Main.getFutureFlights())
+        for (Flight flight1 : DBu.getAirplaneFutureFlights(airplaneNumber))
         {
-            if (flight1.getAirplaneNumber().equals(airplaneNumber))
-                airplaneFutureFlights.add(flight1);
-        }
-
-        if (airplaneFutureFlights.size() != 0) {
-            for (Flight flight2 : airplaneFutureFlights) {
-                if (elapsedTime(flight2.getDepDate(), flight.getDepDate()) == 0 || elapsedTime(flight2.getArrDate(), flight.getDepDate()) == 0 || elapsedTime(flight2.getDepDate(), flight.getArrDate()) == 0 || elapsedTime(flight2.getArrDate(), flight.getArrDate()) == 0)
-                    return false;
-                if (elapsedTime(flight2.getDepDate(), flight.getDepDate()) > 0 && elapsedTime(flight2.getArrDate(), flight.getDepDate()) < 0)
-                    return false;
-                if (elapsedTime(flight2.getDepDate(), flight.getArrDate()) > 0 && elapsedTime(flight2.getArrDate(), flight.getArrDate()) < 0)
-                    return false;
-                if (elapsedTime(flight.getDepDate(), flight2.getDepDate()) > 0 && elapsedTime(flight.getArrDate(), flight2.getArrDate()) < 0)
-                    return false;
-            }
+            if (elapsedTime(flight1.getDepDate(), flight.getDepDate()) == 0 || elapsedTime(flight1.getArrDate(), flight.getDepDate()) == 0 || elapsedTime(flight1.getDepDate(), flight.getArrDate()) == 0 || elapsedTime(flight1.getArrDate(), flight.getArrDate()) == 0)
+                return false;
+            if (elapsedTime(flight1.getDepDate(), flight.getDepDate()) > 0 && elapsedTime(flight1.getArrDate(), flight.getDepDate()) < 0)
+                return false;
+            if (elapsedTime(flight1.getDepDate(), flight.getArrDate()) > 0 && elapsedTime(flight1.getArrDate(), flight.getArrDate()) < 0)
+                return false;
+            if (elapsedTime(flight.getDepDate(), flight1.getDepDate()) > 0 && elapsedTime(flight.getArrDate(), flight1.getArrDate()) < 0)
+                return false;
         }
 
         return true;
-
     }
 }

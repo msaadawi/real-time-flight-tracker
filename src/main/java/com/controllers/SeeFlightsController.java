@@ -216,7 +216,6 @@ public class SeeFlightsController implements Initializable
                 flight.getCancelButton().setOnAction(event ->
                 {
                     DBu.deleteFlight(flight);
-                    Main.setFutureFlights(DBu.getFutureFlights());
                     SeeFlightsController.getListItems().remove(flight);
                 });
             }

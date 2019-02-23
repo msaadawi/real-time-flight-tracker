@@ -480,17 +480,18 @@ public class DButil
         }
     }
 
-    public ArrayList<Flight> getFutureFlights()
+    public ArrayList<Flight> getAirplaneFutureFlights(String airplaneNumber)
     {
         Connection conn ;
         PreparedStatement ps = null;
         ResultSet rs= null;
         ArrayList<Flight> flights = new ArrayList<>();
         conn = DButil.getConnection();
-        String sql = "select * from flight where dep_date > current_timestamp() ";
+        String sql = "select * from flight where airplane_number = ? and dep_date > current_timestamp() ";
         try
         {
             ps = conn.prepareStatement(sql);
+            ps.setString(1,airplaneNumber);
             rs = ps.executeQuery();
             while (rs.next())
             {
