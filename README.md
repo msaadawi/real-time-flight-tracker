@@ -13,12 +13,12 @@ This project is a desktop application to manage, track and visualize an airline 
 2. Open Root folder in your favorite Java IDE.<br/>
 3. Add needed libraries (can be found in 'lib' folder) to your classpath.<br/>
 4. Setup a database user and grant him access to the database named 'rft'.<br/>
-5. modify the file 'DButil.java' by changing the database connection credentials with the ones you gave to the user created in the previous step.<br/>
+5. modify the file 'DButil.java' by providing the database username and password of the user you just created.<br/>
 6. Execute the 'Realtime-Flights-Tracker.sql' sql file.<br/>
 7. Download openjfx.<br/>
 8. Add these configurations to your VM options :<br/>
 --module-path
-path_to_openjfx/javafx-sdk-11.0.2/lib
+<b>path_to_openjfx</b>/javafx-sdk-11.0.2/lib
 --add-modules=javafx.controls,javafx.fxml,com.jfoenix
 --add-exports
 javafx.controls/com.sun.javafx.scene.control.behavior=com.jfoenix
