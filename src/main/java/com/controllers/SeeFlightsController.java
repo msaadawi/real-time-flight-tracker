@@ -241,8 +241,4 @@ public class SeeFlightsController implements Initializable
         return listItems;
     }
 
-    public static void setListItems(ObservableList<Flight> listItems) {
-        SeeFlightsController.listItems = listItems;
-    }
-
 }

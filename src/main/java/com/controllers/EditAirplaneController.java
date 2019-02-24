@@ -111,8 +111,6 @@ public class EditAirplaneController implements Initializable
             else
                 newAirplane.setDateOfPurchase(new SimpleDateFormat("yyyy-MM-dd").parse(dateOfPurchase.getValue().toString()));
 
-            //Airplane newAirplane = new Airplane(airplaneNumber.getText(),type.getText(),Double.parseDouble(size.getText()),Integer.parseInt(capacity.getText()),new SimpleDateFormat("yyyy-MM-dd").parse(dateOfPurchase.getValue().toString()),airplaneToEdit.getStatus());
-
             DBu.editAirplane(airplaneToEdit , newAirplane);
             newAirplane.setStatus(DBu.getAirplaneById(newAirplane.getAirplaneNumber()).getStatus());
             newAirplane.setDateOfPurchase(DBu.getAirplaneById(newAirplane.getAirplaneNumber()).getDateOfPurchase());
@@ -142,9 +140,6 @@ public class EditAirplaneController implements Initializable
     public void cancel(ActionEvent event)
     {
         ((Node)(event.getSource())).getScene().getWindow().hide();
-    }
-    public static Airplane getAirplaneToEdit() {
-        return airplaneToEdit;
     }
 
     public static void setAirplaneToEdit(Airplane airplaneToEdit) {

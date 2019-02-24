@@ -391,10 +391,6 @@ public class AirplanesListController implements Initializable
         return listItems;
     }
 
-    public static void setListItems(ObservableList<Airplane> listItems) {
-        AirplanesListController.listItems = listItems;
-    }
-
     public static Stage getFlightsStage() {
         return flightsStage;
     }

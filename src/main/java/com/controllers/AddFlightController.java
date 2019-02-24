@@ -346,16 +346,8 @@ public class AddFlightController implements Initializable
         }
     }
 
-    public static Stage getStage() {
-        return stage;
-    }
-
-    public static WebEngine getWebEngine() {
-        return webEngine;
-    }
-
-
-    public Boolean checkAirplaneAvailability(String airplaneNumber, Flight flight) {
+    public Boolean checkAirplaneAvailability(String airplaneNumber, Flight flight)
+    {
         DButil DBu = DButil.getCurrentInstance();
         Flight currentFlight = DBu.getAirplaneCurrentFlight(airplaneNumber);
 
@@ -384,5 +376,13 @@ public class AddFlightController implements Initializable
         }
 
         return true;
+    }
+
+    public static Stage getStage() {
+        return stage;
+    }
+
+    public static WebEngine getWebEngine() {
+        return webEngine;
     }
 }
