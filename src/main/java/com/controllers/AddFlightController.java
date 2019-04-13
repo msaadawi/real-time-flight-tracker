@@ -4,7 +4,6 @@ package main.java.com.controllers;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
-import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.value.ObservableValue;
@@ -35,9 +34,7 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.ResourceBundle;
 
 @SuppressWarnings("Duplicates")
@@ -123,7 +120,7 @@ public class AddFlightController implements Initializable
             {
                 if(elapsedTime(flight.getArrDate(), new Date()) > 0)
                 {
-                    Alert alert = new Alert(Alert.AlertType.ERROR, "You entered invalid flight informations. Please try again!", ButtonType.OK);
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "You entered invalid flight information. Please try again!", ButtonType.OK);
                     alert.showAndWait();
                 }
                 else if (!checkAirplaneAvailability(flight.getAirplaneNumber(), flight))
