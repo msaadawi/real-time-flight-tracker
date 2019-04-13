@@ -92,7 +92,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/src/main/resources/lib/jfoenix-9.0.8.jar!/" />
+          <root url="jar://$MODULE_DIR$/src/main/resources/lib/jfoenix-8.0.4.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

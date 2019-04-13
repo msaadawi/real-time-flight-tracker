@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="parent" prefHeight="587.0" prefWidth="1277.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.controllers.AirplanesListController">
+<AnchorPane fx:id="parent" prefHeight="587.0" prefWidth="1277.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.controllers.AirplanesListController">
    <children>
       <TableView fx:id="tableViewList" layoutX="128.0" layoutY="100.0" prefHeight="510.0" prefWidth="909.0" AnchorPane.bottomAnchor="77.0" AnchorPane.leftAnchor="128.0" AnchorPane.rightAnchor="240.0" AnchorPane.topAnchor="0.0">
         <columns>
@@ -32,7 +32,7 @@
       <Button fx:id="SeeFlightsButton" layoutX="6.0" layoutY="311.0" mnemonicParsing="false" onAction="#seeFlights" prefHeight="37.0" prefWidth="117.0" text="See flights" />
       <Button fx:id="CloseButton" layoutX="515.0" layoutY="543.0" mnemonicParsing="false" onAction="#close" prefHeight="30.0" prefWidth="103.0" text="Close" />
 
-       
+
       <Label layoutX="1044.0" layoutY="31.0" prefHeight="22.0" prefWidth="117.0" text="Filter airplanes by :">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -40,14 +40,14 @@
       </Label>
 
       <Label layoutX="1040.0" layoutY="70.0" text="Number:" />
-      <TextField fx:id="airplaneNumber" layoutX="1089.0" layoutY="66.0" prefHeight="25.0" prefWidth="186.0" />
+      <TextField fx:id="airplaneNumber" layoutX="1089.0" layoutY="66.0" prefHeight="25.0" prefWidth="170.0" />
 
       <Label layoutX="1040.0" layoutY="108.0" prefHeight="22.0" prefWidth="31.0" text="Type:" />
-      <TextField fx:id="typeField" layoutX="1070.0" layoutY="109.0" prefHeight="25.0" prefWidth="202.0" />
+      <TextField fx:id="typeField" layoutX="1070.0" layoutY="109.0" prefHeight="25.0" prefWidth="190.0" />
       <Label layoutX="1042.0" layoutY="160.0" text="Size:" />
-      <TextField fx:id="sizeField" layoutX="1068.0" layoutY="157.0" prefHeight="25.0" prefWidth="202.0" />
+      <TextField fx:id="sizeField" layoutX="1068.0" layoutY="157.0" prefHeight="25.0" prefWidth="190.0" />
       <Label layoutX="1042.0" layoutY="207.0" text="Capacity:" />
-      <TextField fx:id="capacityField" layoutX="1091.0" layoutY="205.0" prefHeight="25.0" prefWidth="179.0" />
+      <TextField fx:id="capacityField" layoutX="1091.0" layoutY="205.0" prefHeight="25.0" prefWidth="170.0" />
       <Label layoutX="1042.0" layoutY="252.0" text="Date of Purchase:" />
       <Label layoutX="1042.0" layoutY="290.0" text="day :" />
        <ChoiceBox fx:id="dofDayChoiceBox" layoutX="1071.0" layoutY="287.0" prefHeight="25.0" prefWidth="61.0" value="-">
